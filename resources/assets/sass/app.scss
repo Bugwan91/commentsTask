@@ -1,0 +1,17 @@
+@import "variables";
+
+html {
+  font-size: $font-size-s;
+}
+
+@media (min-width: 1200px) {
+  html {
+    font-size: $font-size-m;
+  }
+}
+
+@media (min-width: 1400px) {
+  html {
+    font-size: $font-size-l;
+  }
+}
