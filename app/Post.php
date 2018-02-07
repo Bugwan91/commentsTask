@@ -2,14 +2,16 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
-
-class Post extends Model
+class Post extends Votable
 {
 
     protected $fillable = [
-        'title', 'content'
+        'title', 'content', 'user_id'
     ];
+
+    protected $appends = ['content_preview', 'rating', 'voted'];
+
+    protected $preview_length = 300;
 
     public function user()
     {
@@ -21,8 +23,12 @@ class Post extends Model
         return $this->hasMany('App\Comment', 'post_id', 'id');
     }
 
-    public function votes()
+    public function getContentPreviewAttribute()
     {
-        return $this->morphMany('App\Vote', 'votable');
+        if (mb_strlen($this->content, 'UTF-8') <= $this->preview_length) {
+            return $this->content;
+        }
+        $preview_string = mb_substr($this->content, 0, $this->preview_length, 'UTF-8');
+        return mb_substr($preview_string, 0, mb_strripos($preview_string, ' ', 0, 'UTF-8'), 'UTF-8') . '...';
     }
 }

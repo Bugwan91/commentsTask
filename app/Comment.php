@@ -2,14 +2,14 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
-
-class Comment extends Model
+class Comment extends Votable
 {
 
     protected $fillable = [
-        'content'
+        'content', 'user_id', 'reply_to_id'
     ];
+
+    protected $appends = ['rating', 'voted'];
 
     public function user()
     {
@@ -23,16 +23,21 @@ class Comment extends Model
 
     public function replyTo()
     {
-        return $this->belongsTo('App\Comments', 'parent_id', 'id');
+        return $this->belongsTo('App\Comments', 'reply_to_id', 'id');
     }
 
-    public function comments() {
-        return $this->hasMany('App\Comment', 'parent_id', 'id');
-    }
-
-    public function votes()
+    public function replies()
     {
-        return $this->morphMany('App\Vote', 'votable');
+        return $this->hasMany('App\Comment', 'reply_to_id', 'id');
+    }
+
+    public function parseAllReplies()
+    {
+        $comments = $this->replies;
+        foreach ($comments as $comment) {
+            $comment->user;
+            $comment->parseAllReplies();
+        }
     }
 
 }

@@ -9,7 +9,7 @@ class Vote extends Model
 {
 
     protected $fillable = [
-        'value', 'created_at'
+        'value', 'user_id', 'created_at'
     ];
 
     public $timestamps = false;
@@ -17,11 +17,6 @@ class Vote extends Model
     public function user()
     {
         return $this->belongsTo('App\User', 'user_id', 'id');
-    }
-
-    public function comment()
-    {
-        return $this->hasOne('App\Comment', 'comment_id', 'id');
     }
 
     public function votable()
@@ -35,7 +30,7 @@ class Vote extends Model
 
         static::creating(function ($model) {
             $model->created_at = $model->freshTimestamp();
-            $model->user = Auth::user();
+            $model->user_id = Auth::id();
         });
     }
 }

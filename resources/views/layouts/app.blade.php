@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'Comments_TestTask') }}</title>
 
     <script defer src="https://use.fontawesome.com/releases/v5.0.0/js/all.js"></script>
 
@@ -20,12 +20,13 @@
 </head>
 <body>
 
-    @yield('content')
+    @yield('body')
 
     <!-- Scripts -->
     <script src="{{ asset('js/manifest.js') }}"></script>
     <script src="{{ asset('js/vendor.js') }}"></script>
     <script src="{{ asset('js/app.js') }}"></script>
+    <script src="/js/auth.js"></script>
     @yield('scripts')
 
 </body>

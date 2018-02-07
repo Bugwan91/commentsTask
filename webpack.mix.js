@@ -11,6 +11,9 @@ let mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/assets/js/app.js', 'public/js')
-   .sass('resources/assets/sass/app.scss', 'public/css')
-   .sass('node_modules/bulma/bulma.sass', 'public/css/vendor.css');
+mix.js(['./resources/assets/js/app.js'], 'public/js')
+   .extract(['vue', 'axios'])
+   .js('./resources/assets/js/post.js', 'public/js')
+   .js('./resources/assets/js/auth.js', 'public/js')
+   .sass('./resources/assets/sass/app.scss', 'public/css')
+   .sass('./node_modules/bulma/bulma.sass', 'public/css/vendor.css');
