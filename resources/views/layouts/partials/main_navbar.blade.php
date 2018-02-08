@@ -5,10 +5,11 @@
                 Home
             </a>
         </div>
-
-        <div id="auth" class="navbar-end">
-            <auth :user-data="{{ Auth::user() ? Auth::user()->toJson() : '{}' }}"></auth>
-        </div>
+        @if(!in_array(Route::currentRouteName(), ['login', 'register', 'password.request', 'password.reset']))
+            <div id="auth" class="navbar-end">
+                <auth :user-data="{{ Auth::user() ? Auth::user()->toJson() : '{}' }}"></auth>
+            </div>
+        @endif
     </div>
 
 </nav>

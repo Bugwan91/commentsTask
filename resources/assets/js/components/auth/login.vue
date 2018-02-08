@@ -44,6 +44,7 @@
                             Login
                         </button>
                     </div>
+                    <a href="/password/reset">Forgot Your Password?</a>
                 </div>
             </footer>
         </div>

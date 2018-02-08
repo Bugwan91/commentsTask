@@ -1,9 +1,5 @@
 @import "blocks/comment";
 
-.padding_left_small {
-  padding-left: 10px;
-}
-
 html {
   font-size: 14px;
 }
@@ -18,4 +14,14 @@ html {
   html {
     font-size: 18px;
   }
+}
+
+.padding_left_small {
+  padding-left: 10px;
+}
+
+.container-card_center {
+  padding: 40px;
+  max-width: 600px;
+  margin: 40px auto;
 }
