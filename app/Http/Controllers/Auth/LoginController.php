@@ -60,12 +60,6 @@ class LoginController extends Controller
 
         $request->session()->invalidate();
 
-        if ($request->ajax()) {
-            return response()->json([
-                'status' => 'ok'
-            ]);
-        } else {
-            return redirect('/');
-        }
+        return redirect('/');
     }
 }

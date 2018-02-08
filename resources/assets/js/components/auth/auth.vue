@@ -6,7 +6,7 @@
                 <strong>
                     {{ user.name }}
                 </strong>
-                <span class="padding_left_small">Logout</span>
+                <a href="/logout" class="padding_left_small">Logout</a>
             </a>
         </div>
         <div v-else="isAuth" class="navbar-menu">
@@ -73,16 +73,6 @@
             },
             registerClose() {
                 this.register_active = false;
-            },
-            logout() {
-                axios.post('/logout')
-                    .then(response => {
-                        this.user = {};
-                        AuthEvent.$emit('log-out');
-                    })
-                    .catch(error => {
-                        console.log(error);
-                    });
             }
         }
     }
