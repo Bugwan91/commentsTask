@@ -12,5 +12,7 @@
         </div>
     @endforeach
     </div>
-    {{ $posts->render() }}
+    <div class="section">
+        @include('pagination', ['paginator' => $posts])
+    </div>
 @endsection
