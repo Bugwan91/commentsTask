@@ -75,7 +75,7 @@
                 this.register_active = false;
             },
             logout() {
-                axios.get('/logout')
+                axios.post('/logout')
                     .then(response => {
                         this.user = {};
                         AuthEvent.$emit('log-out');
